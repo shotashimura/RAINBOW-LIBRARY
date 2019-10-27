@@ -1,0 +1,61 @@
+body {
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+}
+
+.front h1 {
+  color: #f0f0f0;
+  font-size: 60px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 30px;
+}
+
+#draw_canvas {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.storagebox {
+  text-align: center;
+  padding-top: 30px;
+}
+
+/* 重ねることもできる */
+/* img {
+  position: absolute;
+  top: 200px;
+  left: 300px;
+} */
+
+/* ハートの部分 */
+/* 
+#heart {
+  position: relative;
+  width: 1000px;
+  height: 90px;
+}
+#heart:before,
+#heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #fff0f5;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+#heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+ハートの部分　終わり */
