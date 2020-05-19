@@ -22,6 +22,7 @@
 
     <ul>
       <div class="storagebox">
+        <!-- send Value commands -->
         <p>
           <button id="red" onclick="draw('red')">赤</button>
           <button id="orange" onclick="draw('orange')">橙</button>
@@ -32,67 +33,28 @@
           <button id="purple" onclick="draw('purple')">紫</button><br />
           <button id="send">貯める</button>
           <button id="clear">次の空へ</button>
-
-          <!-- <button onclick="save()">届ける</button> -->
-          <!-- ローカルストレージの時に利用
-            <button onclick="save()">go strage</button>
-          <button onclick="get()">get Rainbow</button>
-          <button id="clear">eat</button> -->
         </p>
       </div>
     </ul>
 
+    <!-- reading JQuery from CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-    <!-- <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyBLuFkZyBXc-ixaNBFuTJ7zOgfNuE9zuEs",
-        authDomain: "rainbow-52129.firebaseapp.com",
-        databaseURL: "https://rainbow-52129.firebaseio.com",
-        projectId: "rainbow-52129",
-        storageBucket: "rainbow-52129.appspot.com",
-        messagingSenderId: "306450167944",
-        appId: "1:306450167944:web:3b45d214a3079af4"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-
-      //     service firebase.storage {
-      // match /b/{bucket}/o {
-      //   match /{allPaths=**} {
-      //     allow read, write: if request.auth != null;
-      //   }
-      // } -->
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
     <script>
       // Your web app's Firebase configuration
       var firebaseConfig = {
-        apiKey: "AIzaSyCZC3KIVd44f673YREFuXp5bccBw1uiXsE",
-        authDomain: "rainbow-fff73.firebaseapp.com",
-        databaseURL: "https://rainbow-fff73.firebaseio.com",
-        projectId: "rainbow-fff73",
-        storageBucket: "rainbow-fff73.appspot.com",
-        messagingSenderId: "356906457631",
-        appId: "1:356906457631:web:b0bf6c0d5fc9c3e3"
+        apiKey: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        authDomain: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        databaseURL: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        projectId: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        storageBucket: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXXX",
+        appId: "XXXXXXXXXXXXXXXXXXXXXXXX"
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
-
       const newPostRef = firebase.database().ref();
-
-      // 以上までfirebase
     </script>
 
     <script>
@@ -110,40 +72,16 @@
 
         color = context.fillRect(x, y, w, h);
       }
-
-      // saveとgetがローカルストレー
-      // function save() {
-      //   let cv = document.getElementById("draw_canvas");
-      //   let context = cv.getContext("2d");
-
-      //   let data = cv.toDataURL();
-
-      //   firebase("draw_data", data);
-      //   location.reload();
-      // }
-
-      // function get() {
-      //   let data = localStorage.getItem("draw_data");
-
-      //   let img = new Image();
-
-      //   img.onload = view;
-      //   img.src = data;
-      // }
-
       function view(e) {
         let img = e.target;
-
         let cv = document.getElementById("draw_canvas");
         let context = cv.getContext("2d");
-
         context.drawImage(img, 0, 0);
       }
 
       function init() {
         let cv = document.getElementById("draw_canvas");
         let context = cv.getContext("2d");
-
         context.fillStyle = "#e0e0e0";
         context.fillRect(0, 0, 256, 256);
       }
@@ -153,7 +91,6 @@
         localStorage.clear();
         $("#list").empty();
         location.reload();
-        // alert("Yummy!");
       });
 
       // 下記からfirebase処理エリア
@@ -166,52 +103,18 @@
 
         location.reload();
         newPostRef.push({
-          // red: $("#red").val(),
-          // orange: $("#orange").val(),
-          // yellow: $("#yellow").val(),
-          // green: $("#green").val(),
-          // skyblue: $("#skyblue").val(),
-          // blue: $("#blue").val(),
-          // purple: $("#purple").val()
           firebase: data,
           canvas: $("#draw_canvas").val()
         });
-        console.log(red);
-        // get();
       });
 
       // ２ データ受信
       newPostRef.on("child_added", function(data) {
         let v = data.val();
-        let k = data.key;
-
-        // 表面へ現れるように処理
-        // let r = v.red;
-        // let o = v.orange;
-        // let y = v.yellow;
-        // let g = v.green;
-        // let s = v.skyblue;
-        // let b = v.blue;
-        // let p = v.purple;
-
-        let firebasedesu = v.firebase;
-        let canvasdesu = v.canvas;
-
-        // $("#draw_canvas").prepend(r);
-        // $("#draw_canvas").prepend(o);
-        // $("#draw_canvas").prepend(y);
-        // $("#draw_canvas").prepend(g);
-        // $("#draw_canvas").prepend(s);
-        // $("#draw_canvas").prepend(b);
-        // $("#draw_canvas").prepend(p);
-
-        console.log(firebasedesu);
-
-        $("body").append('<img src="' + firebasedesu + '">');
-        //bodyにしたら表示される　#draw_canvaでもコンソールで見るとはいつてる
-        // $("#draw_canvas").prepend(firebasedesu);
-        // $("#draw_canvas").prepend(canvasdesu);
-        // // get();
+        // let k = data.key;
+        let firebaseVal = v.firebase;
+        // let canvasVal = v.canvas;
+        $("body").append('<img src="' + firebaseVal + '">');
       });
     </script>
   </body>
